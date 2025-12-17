@@ -1,0 +1,16 @@
+[project]
+name = "sbtc-lending"
+description = "sBTC collateralized lending protocol with Clarity 4 time-based interest"
+authors = ["Stacks Builder"]
+telemetry = false
+cache_dir = "./.cache"
+requirements = []
+
+[contracts.sbtc-lending]
+path = "contracts/sbtc-lending.clar"
+clarity_version = 4
+epoch = 3.3
+
+[repl.analysis]
+passes = ["check_checker"]
+check_checker = { trusted_sender = false, trusted_caller = false, callee_filter = false }

@@ -1,0 +1,14 @@
+[network]
+name = "testnet"
+node_rpc_address = "https://api.testnet.hiro.so"
+deployment_fee_rate = 10
+
+# Deployment account
+# IMPORTANT: Fund this address with testnet STX before deploying
+# Get testnet STX from: https://explorer.hiro.so/sandbox/faucet?chain=testnet
+[accounts.deployer]
+mnemonic = "twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw"
+
+# Testnet configuration
+[testnet]
+stacks_node_rpc_address = "https://api.testnet.hiro.so"
