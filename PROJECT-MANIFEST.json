@@ -1,0 +1,255 @@
+{
+  "project": {
+    "name": "sbtc-lending",
+    "version": "1.0.0",
+    "description": "sBTC Collateralized Lending Protocol with Clarity 4",
+    "type": "DeFi Lending Protocol",
+    "challenge": "Stacks Builder Challenge",
+    "created": "2024-12-17",
+    "status": "deployed"
+  },
+  "contract": {
+    "name": "sbtc-lending",
+    "language": "Clarity",
+    "version": 4,
+    "epoch": "3.3",
+    "network": "testnet",
+    "address": "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sbtc-lending",
+    "deployer": "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM",
+    "deploymentTransaction": "ed11644a17bfffcabefb3021a1b067a09ef07b8c915a571e9e9e61a8bf0175d6",
+    "deploymentCost": "1.794893 STX",
+    "sourceFile": "contracts/sbtc-lending.clar",
+    "linesOfCode": 496
+  },
+  "links": {
+    "explorer": "https://explorer.hiro.so/txid/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sbtc-lending?chain=testnet",
+    "deploymentTx": "https://explorer.hiro.so/txid/ed11644a17bfffcabefb3021a1b067a09ef07b8c915a571e9e9e61a8bf0175d6?chain=testnet",
+    "faucetTx": "https://explorer.hiro.so/txid/0xc33c777731f82132bf92ffe2e8da4a85ed925d43c5e2e6a9655073effaa206fb?chain=testnet",
+    "deployer": "https://explorer.hiro.so/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=testnet"
+  },
+  "features": {
+    "clarity4": [
+      {
+        "feature": "stacks-block-time",
+        "usage": "Real-time interest accrual calculation",
+        "lines": [94, 106, 266, 336, 351]
+      },
+      {
+        "feature": "contract-hash?",
+        "usage": "Verify approved collateral tokens",
+        "lines": [208, 228]
+      },
+      {
+        "feature": "to-ascii?",
+        "usage": "Generate human-readable loan receipts",
+        "lines": [157, 158, 159, 160]
+      },
+      {
+        "feature": "print",
+        "usage": "Event logging for monitoring",
+        "lines": [222, 301, 365, 410, 461, 486]
+      }
+    ],
+    "chainhooks": {
+      "enabled": true,
+      "package": "@hirosystems/chainhooks-client",
+      "version": "^1.8.1",
+      "listener": "src/chainhooks/listener.js",
+      "eventsTracked": [
+        "collateral-approved",
+        "loan-created",
+        "loan-repaid",
+        "collateral-added",
+        "loan-liquidated",
+        "price-updated"
+      ]
+    },
+    "automation": {
+      "scripts": [
+        {
+          "name": "execute-borrow",
+          "path": "src/scripts/execute-borrow.js",
+          "description": "Execute borrow transaction",
+          "usage": "node src/scripts/execute-borrow.js <collateral> <amount>"
+        },
+        {
+          "name": "get-stats",
+          "path": "src/scripts/get-stats.js",
+          "description": "Get protocol statistics",
+          "usage": "node src/scripts/get-stats.js"
+        }
+      ]
+    }
+  },
+  "contractFunctions": {
+    "public": [
+      {
+        "name": "borrow",
+        "params": ["collateral-amount: uint", "borrow-amount: uint"],
+        "returns": "{loan-id: uint, receipt: string-ascii}",
+        "description": "Deposit collateral and borrow STX"
+      },
+      {
+        "name": "repay",
+        "params": ["loan-id: uint", "amount: uint"],
+        "returns": "{interest-paid: uint, principal-paid: uint, remaining-debt: uint}",
+        "description": "Repay loan (partial or full)"
+      },
+      {
+        "name": "add-collateral",
+        "params": ["loan-id: uint", "amount: uint"],
+        "returns": "uint",
+        "description": "Add more collateral to existing loan"
+      },
+      {
+        "name": "liquidate",
+        "params": ["loan-id: uint"],
+        "returns": "{debt-paid: uint, collateral-received: uint, liquidator: principal}",
+        "description": "Liquidate underwater positions"
+      },
+      {
+        "name": "approve-collateral",
+        "params": ["token-contract: principal", "token-name: string-ascii", "ltv-ratio: uint"],
+        "returns": "buff 32",
+        "description": "Whitelist collateral tokens (admin only)"
+      },
+      {
+        "name": "set-sbtc-price",
+        "params": ["new-price: uint"],
+        "returns": "uint",
+        "description": "Update sBTC price oracle (admin only)"
+      }
+    ],
+    "readOnly": [
+      {
+        "name": "get-loan",
+        "params": ["loan-id: uint"],
+        "returns": "loan-data",
+        "description": "Get loan details"
+      },
+      {
+        "name": "calculate-interest",
+        "params": ["loan-id: uint"],
+        "returns": "interest-calculation",
+        "description": "Calculate accrued interest for a loan"
+      },
+      {
+        "name": "get-health-factor",
+        "params": ["loan-id: uint"],
+        "returns": "uint",
+        "description": "Get loan health factor (collateral ratio)"
+      },
+      {
+        "name": "is-liquidatable",
+        "params": ["loan-id: uint"],
+        "returns": "bool",
+        "description": "Check if loan can be liquidated"
+      },
+      {
+        "name": "generate-loan-receipt",
+        "params": ["loan-id: uint", "amount: uint", "collateral: uint"],
+        "returns": "string-ascii",
+        "description": "Generate human-readable loan receipt"
+      },
+      {
+        "name": "get-protocol-stats",
+        "params": [],
+        "returns": "{total-collateral: uint, total-borrowed: uint, protocol-fees: uint, sbtc-price: uint}",
+        "description": "Get protocol-wide statistics"
+      },
+      {
+        "name": "get-current-time",
+        "params": [],
+        "returns": "uint",
+        "description": "Get current block time"
+      }
+    ]
+  },
+  "events": {
+    "collateral-approved": {
+      "fields": ["event", "token-contract", "token-name", "ltv-ratio", "timestamp"],
+      "description": "Emitted when a new collateral token is approved"
+    },
+    "loan-created": {
+      "fields": ["event", "loan-id", "borrower", "collateral-amount", "borrowed-amount", "interest-rate", "timestamp"],
+      "description": "Emitted when a new loan is created"
+    },
+    "loan-repaid": {
+      "fields": ["event", "loan-id", "borrower", "amount", "interest-paid", "principal-paid", "remaining-debt", "fully-repaid", "timestamp"],
+      "description": "Emitted when a loan is repaid"
+    },
+    "collateral-added": {
+      "fields": ["event", "loan-id", "borrower", "amount", "new-total-collateral", "timestamp"],
+      "description": "Emitted when collateral is added to a loan"
+    },
+    "loan-liquidated": {
+      "fields": ["event", "loan-id", "borrower", "liquidator", "debt-paid", "collateral-received", "health-factor", "timestamp"],
+      "description": "Emitted when a loan is liquidated"
+    },
+    "price-updated": {
+      "fields": ["event", "old-price", "new-price", "timestamp"],
+      "description": "Emitted when sBTC price is updated"
+    }
+  },
+  "protocolParameters": {
+    "MIN_COLLATERAL_RATIO": "15000 (150%)",
+    "LIQUIDATION_THRESHOLD": "12000 (120%)",
+    "LIQUIDATION_BONUS": "500 (5%)",
+    "BASE_INTEREST_RATE": "500 (5% APR)",
+    "SECONDS_PER_YEAR": "31536000"
+  },
+  "builderChallenge": {
+    "category": "DeFi Lending",
+    "metrics": {
+      "chainhooksIntegration": true,
+      "smartContractDeployed": true,
+      "eventLogging": 6,
+      "clarity4Features": 4,
+      "documentation": "comprehensive",
+      "automation": "enabled"
+    },
+    "leaderboard": {
+      "chainhooks": "Integrated with event monitoring",
+      "users": "Multi-user lending protocol",
+      "fees": "Protocol fees tracked in contract",
+      "github": "Public repository with comprehensive docs"
+    }
+  },
+  "setup": {
+    "requirements": [
+      "Node.js >= 18.0.0",
+      "Clarinet >= 4.0.0",
+      "npm >= 9.0.0"
+    ],
+    "installation": [
+      "npm install",
+      "Create .env file with PRIVATE_KEY and WEBHOOK_URL",
+      "npm run setup"
+    ],
+    "usage": [
+      "npm run start:chainhooks - Start event listener",
+      "npm run execute:stats - Get protocol statistics",
+      "npm run execute:borrow - Execute borrow transaction"
+    ]
+  },
+  "aiAgentInstructions": {
+    "contractAddress": "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sbtc-lending",
+    "network": "testnet",
+    "howToInteract": [
+      "Read statistics: Use get-stats.js script",
+      "Execute borrow: Use execute-borrow.js script with collateral and borrow amounts",
+      "Monitor events: Use chainhooks listener.js",
+      "All scripts are in src/scripts/ directory",
+      "Configuration is in package.json and PROJECT-MANIFEST.json"
+    ],
+    "quickStart": "npm install && node src/scripts/get-stats.js"
+  },
+  "documentation": {
+    "README.md": "Main project documentation",
+    "DEPLOYMENT-SUCCESS.md": "Deployment details and transaction IDs",
+    "WALLET-SETUP.md": "Wallet generation guide",
+    "DEPLOYMENT.md": "Full deployment instructions",
+    "CHAINHOOKS-GUIDE.md": "Chainhooks integration guide",
+    "API-REFERENCE.md": "Complete API reference"
+  }
+}
