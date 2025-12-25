@@ -1,0 +1,60 @@
+{
+  "name": "sbtc-lending-frontend",
+  "version": "1.0.0",
+  "description": "sBTC Lending Protocol Frontend with WalletKit SDK and Reown AppKit Integration",
+  "private": true,
+  "dependencies": {
+    "@stacks/connect": "^7.7.0",
+    "@stacks/network": "^6.13.0",
+    "@stacks/transactions": "^6.13.0",
+    "@stacks/wallet-sdk": "^6.13.0",
+    "@stacks/blockchain-api-client": "^8.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "axios": "^1.6.0",
+    "chart.js": "^4.4.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-hot-toast": "^2.4.1",
+    "web-vitals": "^3.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && echo 'Ready to deploy the build folder'",
+    "test:wallets": "node test-wallet-connections.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "keywords": [
+    "sbtc",
+    "lending",
+    "defi",
+    "stacks",
+    "clarity",
+    "walletkit",
+    "reown",
+    "appkit",
+    "walletconnect"
+  ],
+  "author": "sBTC Lending Protocol",
+  "license": "MIT"
+}
