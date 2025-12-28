@@ -1,0 +1,9 @@
+{
+  "txId": "25651d7b1a29467c52d4438c5e9bb7842ca054befc4bb970d6870329c3bbe03e",
+  "contractName": "sbtc-lending",
+  "deployer": "SP12KRGRZ2N2Q5B8HKXHETGRD0JVF282TAA3R3HXX",
+  "network": "testnet",
+  "timestamp": "2025-12-28T10:31:20.761Z",
+  "explorerUrl": "https://explorer.hiro.so/txid/25651d7b1a29467c52d4438c5e9bb7842ca054befc4bb970d6870329c3bbe03e?chain=testnet",
+  "contractUrl": "https://explorer.hiro.so/txid/SP12KRGRZ2N2Q5B8HKXHETGRD0JVF282TAA3R3HXX.sbtc-lending?chain=testnet"
+}

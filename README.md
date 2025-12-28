@@ -27,11 +27,14 @@ A production-ready DeFi lending protocol where users can borrow against sBTC col
 ## 🚀 Deployed Contract
 
 **Network**: Stacks Testnet
-**Contract**: `ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sbtc-lending`
-**Explorer**: [View on Explorer](https://explorer.hiro.so/txid/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.sbtc-lending?chain=testnet)
-**Deployment TX**: [ed11644a...](https://explorer.hiro.so/txid/ed11644a17bfffcabefb3021a1b067a09ef07b8c915a571e9e9e61a8bf0175d6?chain=testnet)
+**Contract**: `SP12KRGRZ2N2Q5B8HKXHETGRD0JVF282TAA3R3HXX.sbtc-lending`
+**Deployer**: `SP12KRGRZ2N2Q5B8HKXHETGRD0JVF282TAA3R3HXX`
+**Transaction ID**: `25651d7b1a29467c52d4438c5e9bb7842ca054befc4bb970d6870329c3bbe03e`
+**Deployed**: December 27, 2025
+**Explorer**: [View Transaction](https://explorer.hiro.so/txid/25651d7b1a29467c52d4438c5e9bb7842ca054befc4bb970d6870329c3bbe03e?chain=testnet)
+**Contract URL**: [View Contract](https://explorer.hiro.so/txid/SP12KRGRZ2N2Q5B8HKXHETGRD0JVF282TAA3R3HXX.sbtc-lending?chain=testnet)
 
-**Status**: ✅ Live on Testnet | ✅ Clarity 4 (Epoch 3.3) | ✅ Chainhooks Integrated
+**Status**: ✅ Live on Testnet | ✅ Clarity 4 (Epoch 3.3) | ✅ Chainhooks Integrated | ✅ Week 3 Complete
 
 ---
 

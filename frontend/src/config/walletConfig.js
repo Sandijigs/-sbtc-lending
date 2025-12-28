@@ -77,15 +77,16 @@ export const NETWORK_CONFIG = {
   }
 };
 
-// Contract addresses for sbtc-lending
+// Contract addresses for sbtc-lending (Updated December 27, 2025)
 export const CONTRACT_CONFIG = {
   testnet: {
-    address: 'ST1H1B3W8FM3F0TJR7BMQQ1Q3T9N7V66WH8BWYRJC',
-    name: 'sbtc-lending-protocol'
+    address: 'SP12KRGRZ2N2Q5B8HKXHETGRD0JVF282TAA3R3HXX',
+    name: 'sbtc-lending',
+    deploymentTx: '25651d7b1a29467c52d4438c5e9bb7842ca054befc4bb970d6870329c3bbe03e'
   },
   mainnet: {
     address: null, // To be deployed
-    name: 'sbtc-lending-protocol'
+    name: 'sbtc-lending'
   }
 };
 
